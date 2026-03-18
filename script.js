@@ -363,45 +363,45 @@ function enviarPedido() {
     let mensagem = "";
     
     // Cabeçalho com emojis
-    mensagem += "*NOVO PEDIDO - Ny Ateliê*\n";
+    mensagem += "🛍️ *NOVO PEDIDO - Ny Ateliê* 🛍️\n";
     mensagem += "═══════════════════════\n\n";
     
     // Dados do cliente
-    mensagem += "*Cliente:* " + nome + "\n\n";
+    mensagem += "👤 *Cliente:* " + nome + "\n\n";
     
     // Itens do pedido
-    mensagem += "*ITENS DO PEDIDO*\n";
+    mensagem += "📦 *ITENS DO PEDIDO*\n";
     mensagem += "────────────────────\n\n";
     
     carrinho.forEach((item) => {
         mensagem += "• *" + item.quantidade + "x " + item.nome + "*\n";
-        mensagem += "   Cor: " + item.cor + " \n";
-        mensagem += "   Tamanho: " + item.tamanho + "\n";
-        mensagem += "   Subtotal: R$ " + formatarPreco(item.preco * item.quantidade) + "\n\n";
+        mensagem += "  🎨 Cor: " + item.cor + " 🟢🟡🔵\n";
+        mensagem += "  📏 Tamanho: " + item.tamanho + "\n";
+        mensagem += "  💰 Subtotal: R$ " + formatarPreco(item.preco * item.quantidade) + "\n\n";
     });
     
     // Total
     const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
     mensagem += "────────────────────\n";
-    mensagem += " *TOTAL DO PEDIDO: R$ " + formatarPreco(total) + "* \n\n";
+    mensagem += "💎 *TOTAL DO PEDIDO: R$ " + formatarPreco(total) + "* 💎\n\n";
     
     // Pagamento
     mensagem += "💳 *FORMA DE PAGAMENTO*\n";
     mensagem += "────────────────────\n";
-    mensagem += " " + formaPagamento + "\n\n";
+    mensagem += "👉 " + formaPagamento + "\n\n";
     
     // Condições especiais
-    mensagem += " *CONDIÇÕES ESPECIAIS*\n";
+    mensagem += "📌 *CONDIÇÕES ESPECIAIS*\n";
     mensagem += "────────────────────\n";
-    mensagem += " Para clientes da região: 50% para iniciar e 50% na entrega \n\n";
+    mensagem += "🔸 Para clientes da região: 50% para iniciar e 50% na entrega 💝\n\n";
     
     // Entrega e finalização
-    mensagem += " *Entrega:* (calcular frete)\n\n";
-    mensagem += " *Aguardando retorno para finalizar!* \n\n";
+    mensagem += "🚚 *Entrega:* (calcular frete)\n\n";
+    mensagem += "✨ *Aguardando retorno para finalizar!* ✨\n\n";
     mensagem += "═══════════════════════";
     
     // SOLUÇÃO CORRIGIDA PARA EMOJIS
-       cconst url = `https://wa.me/5591984829252?text=${encodeURIComponent(mensagem)}`;
+       const url = `https://wa.me/5591984829252?text=${encodeURIComponent(mensagem)}`;
     
     // Abrir WhatsApp
     window.open(url, '_blank');
