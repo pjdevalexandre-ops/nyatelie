@@ -730,7 +730,7 @@ h1, h2, h3, h4, .section-title {
     transform: translateX(0);
 }
 
-/* HEADER DO CARRINHO */
+/* HEADER DO CARRINHO - FIXO */
 .carrinho-header {
     padding: 20px 25px;
     display: flex;
@@ -780,6 +780,7 @@ h1, h2, h3, h4, .section-title {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* ITENS DO CARRINHO */
@@ -1079,13 +1080,14 @@ h1, h2, h3, h4, .section-title {
     font-style: italic;
 }
 
-/* RODAPÉ FIXO */
+/* RODAPÉ FIXO - NUNCA SOME */
 .carrinho-footer-fixo {
     flex-shrink: 0;
     background: var(--branco);
-    border-top: 1px solid var(--cinza-border);
-    padding: 20px 25px;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
+    border-top: 2px solid var(--ciano);
+    padding: 15px 25px 20px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    width: 100%;
 }
 
 /* RESUMO */
@@ -1126,7 +1128,7 @@ h1, h2, h3, h4, .section-title {
     color: var(--ciano);
 }
 
-/* BOTÃO FINALIZAR */
+/* BOTÃO FINALIZAR - FORÇADO A FICAR VISÍVEL */
 .btn-finalizar {
     width: 100%;
     padding: 18px;
@@ -1354,9 +1356,8 @@ h1, h2, h3, h4, .section-title {
     }
 }
 
-/* === MEDIA QUERIES - VERSÃO PC E CELULAR OTIMIZADA === */
+/* === MEDIA QUERIES === */
 @media (min-width: 1025px) {
-    /* PC - Ajustes finos */
     .container {
         max-width: 1400px;
         margin: 0 auto;
@@ -1368,7 +1369,6 @@ h1, h2, h3, h4, .section-title {
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    /* Tablet */
     .grid-produtos {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1385,7 +1385,6 @@ h1, h2, h3, h4, .section-title {
 }
 
 @media (max-width: 768px) {
-    /* Mobile */
     .nav-desktop {
         display: none;
     }
@@ -1422,18 +1421,40 @@ h1, h2, h3, h4, .section-title {
         height: 44px;
     }
     
-    /* Carrinho responsivo */
+    /* CARRINHO - CORREÇÃO DO BOTÃO PARA MOBILE */
     #carrinho-container {
         max-width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
     
     .carrinho-header {
         padding: 15px 20px;
+        flex-shrink: 0;
     }
     
     .carrinho-content {
+        flex: 1;
+        overflow-y: auto;
         padding: 15px 20px;
         gap: 15px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .carrinho-footer-fixo {
+        flex-shrink: 0;
+        padding: 15px 20px;
+        border-top: 2px solid var(--ciano);
+        background: var(--branco);
+        width: 100%;
+    }
+    
+    .btn-finalizar {
+        padding: 16px;
+        font-size: 1rem;
+        width: 100%;
+        display: flex;
     }
     
     .item-carrinho {
@@ -1456,17 +1477,8 @@ h1, h2, h3, h4, .section-title {
         font-size: 0.7rem;
     }
     
-    .carrinho-footer-fixo {
-        padding: 15px 20px;
-    }
-    
     .total-box strong {
         font-size: 1.3rem;
-    }
-    
-    .btn-finalizar {
-        padding: 16px;
-        font-size: 1rem;
     }
     
     /* Ícone carrinho */
@@ -1501,7 +1513,6 @@ h1, h2, h3, h4, .section-title {
 }
 
 @media (max-width: 480px) {
-    /* Mobile pequeno */
     .logo {
         font-size: 1.8rem;
     }
@@ -1564,6 +1575,10 @@ h1, h2, h3, h4, .section-title {
         padding: 10px 12px;
     }
     
+    .carrinho-footer-fixo {
+        padding: 12px 15px;
+    }
+    
     .btn-finalizar {
         padding: 14px;
         font-size: 0.95rem;
@@ -1580,88 +1595,10 @@ h1, h2, h3, h4, .section-title {
     .footer-container {
         grid-template-columns: 1fr;
         gap: 30px;
-
-    }
-
-    /* === CORREÇÃO PARA TECLADO MOBILE - Botão sempre visível === */
-@media (max-width: 768px) {
-    /* Garantir que o carrinho tenha altura total e scroll interno */
-    #carrinho-container {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-    }
-
-    /* Área de conteúdo com scroll */
-    .carrinho-content {
-        flex: 1;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
-        padding-bottom: 10px;
-        max-height: calc(100vh - 200px); /* Reserva espaço para o rodapé */
-    }
-
-    /* Rodapé fixo que NÃO some com o teclado */
-    .carrinho-footer-fixo {
-        flex-shrink: 0;
-        background: var(--branco);
-        border-top: 2px solid var(--ciano);
-        padding: 15px 20px 20px;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-        position: relative;
-        z-index: 10;
-        margin-top: auto;
-        width: 100%;
-    }
-
-    /* Garantir que o botão fique visível */
-    .btn-finalizar {
-        width: 100%;
-        padding: 16px;
-        font-size: 1rem;
-        margin: 0;
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
-
-    /* Quando o teclado abrir, manter o rodapé visível */
-    .carrinho-footer-fixo {
-        position: relative;
-        bottom: 0;
-    }
-
-    /* Ajuste para evitar que o conteúdo fique escondido atrás do teclado */
-    .carrinho-content {
-        padding-bottom: 20px;
-    }
-
-    /* Garantir que o overlay cubra tudo */
-    .carrinho-overlay.active {
-        height: 100vh;
-        position: fixed;
     }
 }
 
-/* Correção específica para iOS */
-@supports (-webkit-touch-callout: none) {
-    @media (max-width: 768px) {
-        #carrinho-container {
-            height: -webkit-fill-available;
-        }
-        
-        .carrinho-content {
-            max-height: calc(100vh - 220px);
-        }
-    }
-}
-
-/* Garantir que o botão nunca suma */
+/* Garantia extra para o botão nunca sumir */
 .btn-finalizar {
     display: flex !important;
     visibility: visible !important;
@@ -1669,25 +1606,6 @@ h1, h2, h3, h4, .section-title {
     pointer-events: auto !important;
 }
 
-/* Melhorar a experiência quando o teclado está aberto */
-.carrinho-content:focus-within {
-    padding-bottom: 30px;
-}
-
-/* Ajuste para quando o campo nome está em foco */
-.nome-input:focus {
-    outline: none;
-    border-color: var(--ciano);
-}
-
-/* Garantir que o scroll funcione bem */
-.carrinho-items {
-    max-height: none;
-}
-
-/* Forçar o botão a ficar visível em todas as situações */
 #carrinho-container:not(.carrinho-hidden) .btn-finalizar {
     display: flex !important;
-}
-
 }
