@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ny Ateliê | Boutique de Crochê</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER PREMIUM -->
+    <header id="header">
+        <a href="#" class="logo">Ny Ateliê</a>
+        
+        <!-- Menu Toggle para Mobile -->
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Overlay do Menu -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <!-- Menu Drawer (desliza da direita) -->
+        <nav class="nav-drawer" id="navDrawer">
+            <div class="drawer-header">
+                <span class="drawer-logo">Ny Ateliê</span>
+                <button class="drawer-close" id="closeDrawer">&times;</button>
+            </div>
+            <ul class="drawer-menu">
+                <li><a href="#inicio" class="drawer-link">Início</a></li>
+                <li><a href="#colecao" class="drawer-link">Coleção</a></li>
+                <li><a href="#medidas" class="drawer-link">Guia de Medidas</a></li>
+                <li><a href="#colecao" class="drawer-btn-explorar">Explorar Loja</a></li>
+            </ul>
+            <div class="drawer-footer">
+                <div class="social-drawer">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Navegação Desktop -->
+        <nav class="nav-desktop">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#colecao">Coleção</a></li>
+                <li><a href="#medidas">Medidas</a></li>
+                <li><a href="#colecao" class="btn-nav-explorar">Explorar Loja</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="hero-tag">Feito à mão com amor</span>
+            <h1>Elegância em cada ponto</h1>
+            <a href="#colecao" class="btn-principal">
+                Explorar Catálogo <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- COLEÇÃO DE PRODUTOS -->
+    <section class="section-container" id="colecao">
+        <div class="header-section">
+            <h2 class="section-title">Coleção Premium</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">Peças exclusivas feitas à mão para você</p>
+        </div>
+        <div id="lista-produtos" class="grid-produtos"></div>
+    </section>
+
+   <!-- CARRINHO LATERAL PREMIUM - ORGANIZADO SEM SOBREPOSIÇÃO -->
+<div id="carrinho-overlay" class="carrinho-overlay"></div>
+<div id="carrinho-container" class="carrinho-hidden">
+    <div class="carrinho-header">
+        <div>
+            <h3>Seu Pedido</h3>
+            <span class="carrinho-subtitle">Itens selecionados</span>
+        </div>
+        <button onclick="toggleCarrinho()" class="close-cart">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <!-- Área de Conteúdo Rolável (Itens + Nome + Pagamento + Aviso) -->
+    <div class="carrinho-content">
+        <!-- RESUMO DOS PRODUTOS -->
+        <div id="itens-carrinho" class="carrinho-items"></div>
+        
+        <!-- NOVO: CAMPO NOME OBRIGATÓRIO -->
+        <div class="nome-wrapper">
+            <div class="nome-header">
+                <i class="fas fa-user"></i>
+                <span>Seus Dados <span class="obrigatorio">*</span></span>
+            </div>
+            <div class="nome-campo">
+                <input type="text" id="nome-cliente" placeholder="Digite seu nome completo" class="nome-input">
+                <small class="campo-aviso">Campo obrigatório para finalizar o pedido</small>
+            </div>
+        </div>
+        
+        <!-- ÁREA DE PAGAMENTO -->
+        <div class="pagamento-wrapper">
+            <div class="pagamento-header">
+                <i class="fas fa-credit-card"></i>
+                <span>Forma de Pagamento <span class="obrigatorio">*</span></span>
+            </div>
+            <div class="pagamento-opcoes">
+                <label class="pagamento-option">
+                    <input type="radio" name="pagamento" value="Pix (à vista - 5% desconto)" checked>
+                    <span class="radio-custom"></span>
+                    <div class="option-content">
+                        <strong>Pix</strong>
+                        <small>à vista com 5% desconto</small>
+                    </div>
+                </label>
+                <label class="pagamento-option">
+                    <input type="radio" name="pagamento" value="Cartão de Crédito (parcelado)">
+                    <span class="radio-custom"></span>
+                    <div class="option-content">
+                        <strong>Cartão de Crédito</strong>
+                        <small>parcelado em até 3x</small>
+                    </div>
+                </label>
+                <label class="pagamento-option">
+                    <input type="radio" name="pagamento" value="Cartão de Débito">
+                    <span class="radio-custom"></span>
+                    <div class="option-content">
+                        <strong>Cartão de Débito</strong>
+                        <small>à vista</small>
+                    </div>
+                </label>
+                <!-- OPÇÃO: 50% + 50% para região -->
+                <label class="pagamento-option pagamento-regiao">
+                    <input type="radio" name="pagamento" value="50% para iniciar + 50% na entrega (clientes da região)">
+                    <span class="radio-custom"></span>
+                    <div class="option-content">
+                        <strong>💰 50% + 50%</strong>
+                        <small>para clientes da região</small>
+                    </div>
+                </label>
+            </div>
+        </div>
+        
+        <!-- AVISO DOS 50% -->
+        <div class="aviso-wrapper">
+            <div class="aviso-header">
+                <i class="fas fa-info-circle"></i>
+                <span>Como funciona 50% + 50%?</span>
+            </div>
+            <div class="aviso-conteudo">
+                <p><strong>🎯 Para clientes da região:</strong></p>
+                <p>🔸 <strong>50%</strong> para iniciar a encomenda</p>
+                <p>🔸 <strong>50%</strong> na entrega</p>
+                <p class="aviso-destaque">💝 Selecione a opção acima se você é da região!</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Área Fixa do Rodapé (Resumo + Botão) -->
+    <div class="carrinho-footer-fixo">
+        <!-- RESUMO DO PEDIDO (TOTAL) -->
+        <div class="carrinho-resumo">
+            <div class="total-box">
+                <span>Total</span>
+                <strong id="valor-total">R$ 0,00</strong>
+            </div>
+            <div class="frete-info">
+                <i class="fas fa-truck"></i>
+                <span>Frete calculado no WhatsApp</span>
+            </div>
+        </div>
+        
+        <!-- BOTÃO FINALIZAR -->
+        <button class="btn-finalizar" onclick="enviarPedido()">
+            <i class="fab fa-whatsapp"></i>
+            Finalizar Pedido
+        </button>
+    </div>
+</div>
+
+    <!-- GUIA DE MEDIDAS -->
+    <section class="section-container" id="medidas" style="background: var(--bege-suave);">
+        <div class="header-section">
+            <h2 class="section-title">Guia de Medidas</h2>
+            <div class="divider"></div>
+            <p class="section-subtitle">Encontre o ajuste perfeito para seu corpo</p>
+        </div>
+
+        <div class="tabela-scroll">
+            <table class="tabela-medidas">
+                <thead>
+                    <tr>
+                        <th>TAMANHO</th>
+                        <th>BUSTO</th>
+                        <th>CINTURA</th>
+                        <th>QUADRIL</th>
+                        <th>COMPR.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>P (36-38)</strong></td>
+                        <td>82 - 88 cm</td>
+                        <td>64 - 70 cm</td>
+                        <td>90 - 96 cm</td>
+                        <td>42 cm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M (40-42)</strong></td>
+                        <td>90 - 96 cm</td>
+                        <td>72 - 78 cm</td>
+                        <td>98 - 104 cm</td>
+                        <td>45 cm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>G (44-46)</strong></td>
+                        <td>98 - 104 cm</td>
+                        <td>80 - 86 cm</td>
+                        <td>106 - 112 cm</td>
+                        <td>48 cm</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="medidas-obs">
+            * Por ser uma peça artesanal, as medidas podem ter pequenas variações
+        </p>
+    </section>
+
+    <!-- FOOTER PREMIUM -->
+    <footer class="footer-premium">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">Ny Ateliê</a>
+                <p>Peças exclusivas feitas à mão, unindo o clássico do crochê ao design contemporâneo.</p>
+                <div class="social-links-footer">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#colecao">Coleção</a></li>
+                    <li><a href="#medidas">Guia de Medidas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> nyaraatelie@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> São Miguel do Guamá, Pará</li>
+                    <li><i class="fas fa-clock"></i> Seg - Sex: 09h às 18h</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ny Ateliê. Criado com amor em cada ponto.</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FIXO -->
+    <a href="https://wa.me/5591984829252" class="whatsapp-fixed" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
