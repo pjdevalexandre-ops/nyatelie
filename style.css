@@ -130,6 +130,63 @@ h1, h2, h3, h4, .section-title {
     box-shadow: 0 10px 20px rgba(0,183,199,0.2);
 }
 
+/* === ÍCONE DO CARRINHO PERSISTENTE === */
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 15px;
+    z-index: 2100;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--branco);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+    background: var(--ciano);
+}
+
+.cart-icon i {
+    font-size: 1.4rem;
+    color: var(--preto);
+    transition: color 0.3s ease;
+}
+
+.cart-icon:hover i {
+    color: var(--branco);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--ciano);
+    color: var(--branco);
+    font-size: 0.75rem;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0,183,199,0.4);
+    transition: all 0.3s ease;
+    border: 2px solid var(--branco);
+}
+
+.cart-icon:hover .cart-count {
+    background: var(--preto);
+    transform: scale(1.1);
+}
+
 /* === MENU MOBILE DRAWER === */
 .menu-toggle {
     display: flex;
@@ -138,8 +195,8 @@ h1, h2, h3, h4, .section-title {
     cursor: pointer;
     z-index: 2100;
     padding: 12px;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     justify-content: center;
     align-items: center;
 }
@@ -227,8 +284,8 @@ h1, h2, h3, h4, .section-title {
     font-size: 2rem;
     cursor: pointer;
     color: var(--preto);
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -516,11 +573,11 @@ h1, h2, h3, h4, .section-title {
 }
 
 .qtd-btn {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border: none;
     background: transparent;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--preto);
     cursor: pointer;
@@ -536,10 +593,10 @@ h1, h2, h3, h4, .section-title {
 }
 
 .qtd-num {
-    width: 44px;
+    width: 48px;
     text-align: center;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 /* ===== BOLINHA TRICOLOR ===== */
@@ -564,8 +621,8 @@ h1, h2, h3, h4, .section-title {
 
 /* Bolinha Tricolor - Única com 3 cores */
 .swatch-tricolor {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s var(--suave);
@@ -695,8 +752,8 @@ h1, h2, h3, h4, .section-title {
 }
 
 .close-cart {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border: none;
     background: var(--bege-suave);
     border-radius: 50%;
@@ -705,7 +762,7 @@ h1, h2, h3, h4, .section-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     flex-shrink: 0;
 }
 
@@ -927,8 +984,8 @@ h1, h2, h3, h4, .section-title {
 }
 
 .radio-custom {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border: 2px solid var(--cinza);
     border-radius: 50%;
     display: inline-block;
@@ -942,8 +999,8 @@ h1, h2, h3, h4, .section-title {
 
 .pagamento-option input[type="radio"]:checked + .radio-custom::after {
     content: '';
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background: var(--ciano);
     border-radius: 50%;
     position: absolute;
@@ -961,12 +1018,12 @@ h1, h2, h3, h4, .section-title {
 }
 
 .option-content strong {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--preto);
 }
 
 .option-content small {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--cinza);
 }
 
@@ -1072,13 +1129,13 @@ h1, h2, h3, h4, .section-title {
 /* BOTÃO FINALIZAR */
 .btn-finalizar {
     width: 100%;
-    padding: 16px;
+    padding: 18px;
     border-radius: 50px;
     border: none;
     background: #25D366;
     color: var(--branco);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -1090,6 +1147,7 @@ h1, h2, h3, h4, .section-title {
 .btn-finalizar:hover {
     background: #128C7E;
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
 }
 
 /* === GUIA DE MEDIDAS === */
@@ -1192,8 +1250,8 @@ h1, h2, h3, h4, .section-title {
 .social-links-footer a {
     color: var(--branco);
     font-size: 1.2rem;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     background: rgba(255,255,255,0.1);
     border-radius: 50%;
     display: flex;
@@ -1296,8 +1354,25 @@ h1, h2, h3, h4, .section-title {
     }
 }
 
-/* === MEDIA QUERIES === */
-@media (min-width: 769px) {
+/* === MEDIA QUERIES - VERSÃO PC E CELULAR OTIMIZADA === */
+@media (min-width: 1025px) {
+    /* PC - Ajustes finos */
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .grid-produtos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Tablet */
+    .grid-produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .menu-toggle,
     .nav-drawer,
     .menu-overlay {
@@ -1310,25 +1385,32 @@ h1, h2, h3, h4, .section-title {
 }
 
 @media (max-width: 768px) {
+    /* Mobile */
     .nav-desktop {
         display: none;
     }
     
     .logo {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     .hero {
         min-height: 500px;
+        height: auto;
+        padding: 100px 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
     }
     
     .section-container {
-        padding: 4rem 5%;
+        padding: 3rem 5%;
     }
     
     .grid-produtos {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 25px;
     }
     
     .seletor-grupo {
@@ -1336,11 +1418,11 @@ h1, h2, h3, h4, .section-title {
     }
     
     .swatch, .swatch-tricolor {
-        width: 50px;
-        height: 50px;
+        width: 44px;
+        height: 44px;
     }
     
-    /* Responsivo do Carrinho */
+    /* Carrinho responsivo */
     #carrinho-container {
         max-width: 100%;
     }
@@ -1356,15 +1438,12 @@ h1, h2, h3, h4, .section-title {
     
     .item-carrinho {
         padding: 12px 15px;
+        gap: 10px;
     }
     
     .item-detalhes {
         gap: 8px;
         font-size: 0.75rem;
-    }
-    
-    .item-preco {
-        min-width: 80px;
     }
     
     .option-content {
@@ -1374,7 +1453,7 @@ h1, h2, h3, h4, .section-title {
     }
     
     .option-content small {
-        font-size: 0.65rem;
+        font-size: 0.7rem;
     }
     
     .carrinho-footer-fixo {
@@ -1384,11 +1463,62 @@ h1, h2, h3, h4, .section-title {
     .total-box strong {
         font-size: 1.3rem;
     }
+    
+    .btn-finalizar {
+        padding: 16px;
+        font-size: 1rem;
+    }
+    
+    /* Ícone carrinho */
+    .cart-icon {
+        width: 44px;
+        height: 44px;
+        margin-right: 10px;
+    }
+    
+    .cart-icon i {
+        font-size: 1.3rem;
+    }
+    
+    .cart-count {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+    
+    .menu-toggle {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .whatsapp-fixed {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+    }
 }
 
 @media (max-width: 480px) {
-    #carrinho-container {
-        max-width: 100%;
+    /* Mobile pequeno */
+    .logo {
+        font-size: 1.8rem;
+    }
+    
+    .cart-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 5px;
+    }
+    
+    .cart-icon i {
+        font-size: 1.2rem;
+    }
+    
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
     }
     
     .carrinho-header {
@@ -1413,7 +1543,6 @@ h1, h2, h3, h4, .section-title {
     .item-carrinho {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
     }
     
     .item-detalhes {
@@ -1441,93 +1570,15 @@ h1, h2, h3, h4, .section-title {
     }
     
     .whatsapp-fixed {
-        bottom: 20px;
-        right: 20px;
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
-    }
-
-    /* === ÍCONE DO CARRINHO PERSISTENTE === */
-.cart-icon {
-    position: relative;
-    cursor: pointer;
-    margin-left: auto;
-    margin-right: 15px;
-    z-index: 2100;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--branco);
-    border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-}
-
-.cart-icon:hover {
-    transform: scale(1.1);
-    background: var(--ciano);
-    color: var(--branco);
-}
-
-.cart-icon i {
-    font-size: 1.3rem;
-    color: var(--preto);
-    transition: color 0.3s ease;
-}
-
-.cart-icon:hover i {
-    color: var(--branco);
-}
-
-.cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: var(--ciano);
-    color: var(--branco);
-    font-size: 0.7rem;
-    font-weight: 600;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,183,199,0.3);
-    transition: all 0.3s ease;
-}
-
-.cart-icon:hover .cart-count {
-    background: var(--preto);
-}
-
-/* Ajuste no header para mobile */
-@media (max-width: 768px) {
-    .cart-icon {
-        margin-right: 10px;
-        width: 40px;
-        height: 40px;
+        bottom: 15px;
+        right: 15px;
     }
     
-    .cart-icon i {
-        font-size: 1.2rem;
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
-}
-
-@media (max-width: 480px) {
-    .cart-icon {
-        width: 38px;
-        height: 38px;
-        margin-right: 5px;
-    }
-    
-    .cart-count {
-        width: 18px;
-        height: 18px;
-        font-size: 0.6rem;
-    }
-}
 }
