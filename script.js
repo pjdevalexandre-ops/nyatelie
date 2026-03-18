@@ -458,6 +458,26 @@ function mostrarNotificacao(mensagem, tipo = 'sucesso') {
             document.body.removeChild(notificacao);
         }, 300);
     }, 3000);
+
+    // Garantir que o botão fique visível quando o campo nome estiver em foco
+document.addEventListener('focusin', (e) => {
+    if (e.target.id === 'nome-cliente') {
+        // Pequeno atraso para o teclado abrir
+        setTimeout(() => {
+            const footer = document.querySelector('.carrinho-footer-fixo');
+            if (footer) {
+                footer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }, 300);
+    }
+});
+
+// Quando perder o foco, não precisa fazer nada especial
+document.addEventListener('focusout', (e) => {
+    if (e.target.id === 'nome-cliente') {
+        // Opcional: voltar ao topo do carrinho
+    }
+});
 }
 
 // Adicionar animações CSS para notificações
@@ -484,5 +504,7 @@ style.textContent = `
             transform: translate(-50%, 20px);
         }
     }
+
+    
 `;
 document.head.appendChild(style);
