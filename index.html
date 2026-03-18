@@ -14,6 +14,12 @@
     <header id="header">
         <a href="#" class="logo">Ny Ateliê</a>
         
+        <!-- Ícone do Carrinho (persistente) -->
+        <div class="cart-icon" onclick="toggleCarrinho()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+        
         <!-- Menu Toggle para Mobile -->
         <div class="menu-toggle" id="menuToggle">
             <span></span>
@@ -95,7 +101,7 @@
         <!-- RESUMO DOS PRODUTOS -->
         <div id="itens-carrinho" class="carrinho-items"></div>
         
-        <!-- NOVO: CAMPO NOME OBRIGATÓRIO -->
+        <!-- CAMPO NOME OBRIGATÓRIO -->
         <div class="nome-wrapper">
             <div class="nome-header">
                 <i class="fas fa-user"></i>
