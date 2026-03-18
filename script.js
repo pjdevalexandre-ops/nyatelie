@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarComponentes();
     renderizarProdutos();
     configurarEventosGlobais();
+    atualizarContadorCarrinho();
 });
 
 function inicializarComponentes() {
@@ -206,27 +207,34 @@ function adicionarAoCarrinho(id) {
     const corElement = document.querySelector(`#cor-${id} .swatch.active`);
     const cor = corElement ? corElement.dataset.cor : 'Azul';
     
-    // Adicionar ao carrinho
-    carrinho.push({
-        id: produto.id,
-        nome: produto.nome,
-        preco: produto.preco,
-        quantidade: qtd,
-        tamanho: tam,
-        cor: cor,
-        imagem: produto.img
-    });
+    // Verificar se já existe item igual no carrinho
+    const itemExistente = carrinho.find(item => 
+        item.id === produto.id && item.tamanho === tam && item.cor === cor
+    );
+    
+    if (itemExistente) {
+        // Se existir, aumenta a quantidade
+        itemExistente.quantidade += qtd;
+        mostrarNotificacao(`Quantidade atualizada: ${itemExistente.nome}`);
+    } else {
+        // Se não existir, adiciona novo item
+        carrinho.push({
+            id: produto.id,
+            nome: produto.nome,
+            preco: produto.preco,
+            quantidade: qtd,
+            tamanho: tam,
+            cor: cor,
+            imagem: produto.img
+        });
+        mostrarNotificacao(`${produto.nome} adicionado ao carrinho!`);
+    }
     
     // Renderizar carrinho
     renderizarCarrinho();
     
-    // Abrir carrinho
-    if (!carrinhoAberto) {
-        toggleCarrinho();
-    }
-    
-    // Feedback visual
-    mostrarNotificacao(`${produto.nome} adicionado ao carrinho!`);
+    // Atualizar contador
+    atualizarContadorCarrinho();
 }
 
 function renderizarCarrinho() {
@@ -278,9 +286,24 @@ function renderizarCarrinho() {
 function removerItem(index) {
     carrinho.splice(index, 1);
     renderizarCarrinho();
+    atualizarContadorCarrinho();
     
     if (carrinho.length === 0) {
         mostrarNotificacao('Carrinho vazio');
+    }
+}
+
+function atualizarContadorCarrinho() {
+    const contador = document.getElementById('cart-count');
+    if (contador) {
+        const totalItens = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+        contador.textContent = totalItens;
+        
+        // Animação simples no contador
+        contador.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            contador.style.transform = 'scale(1)';
+        }, 200);
     }
 }
 
@@ -377,8 +400,8 @@ function enviarPedido() {
     mensagem += "✨ *Aguardando retorno para finalizar!* ✨\n\n";
     mensagem += "═══════════════════════";
     
-    // SOLUÇÃO CORRIGIDA PARA EMOJIS - encodeURIComponent padrão já funciona bem
-    const url = `https://wa.me/${WHATSAPP_CONFIG}?text=${encodeURIComponent(mensagem)}`;
+    // SOLUÇÃO CORRIGIDA PARA EMOJIS
+       const url = `https://wa.me/${WHATSAPP_CONFIG}?text=${encodeURIComponent(unescape(encodeURIComponent(mensagem)))}`;
     
     // Abrir WhatsApp
     window.open(url, '_blank');
@@ -388,6 +411,7 @@ function enviarPedido() {
         carrinho = [];
         renderizarCarrinho();
         toggleCarrinho(false);
+        atualizarContadorCarrinho();
         mostrarNotificacao('Carrinho limpo!');
     }
 }
