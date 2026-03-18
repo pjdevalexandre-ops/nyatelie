@@ -1580,5 +1580,114 @@ h1, h2, h3, h4, .section-title {
     .footer-container {
         grid-template-columns: 1fr;
         gap: 30px;
+
     }
+
+    /* === CORREÇÃO PARA TECLADO MOBILE - Botão sempre visível === */
+@media (max-width: 768px) {
+    /* Garantir que o carrinho tenha altura total e scroll interno */
+    #carrinho-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    /* Área de conteúdo com scroll */
+    .carrinho-content {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+        padding-bottom: 10px;
+        max-height: calc(100vh - 200px); /* Reserva espaço para o rodapé */
+    }
+
+    /* Rodapé fixo que NÃO some com o teclado */
+    .carrinho-footer-fixo {
+        flex-shrink: 0;
+        background: var(--branco);
+        border-top: 2px solid var(--ciano);
+        padding: 15px 20px 20px;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 10;
+        margin-top: auto;
+        width: 100%;
+    }
+
+    /* Garantir que o botão fique visível */
+    .btn-finalizar {
+        width: 100%;
+        padding: 16px;
+        font-size: 1rem;
+        margin: 0;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    /* Quando o teclado abrir, manter o rodapé visível */
+    .carrinho-footer-fixo {
+        position: relative;
+        bottom: 0;
+    }
+
+    /* Ajuste para evitar que o conteúdo fique escondido atrás do teclado */
+    .carrinho-content {
+        padding-bottom: 20px;
+    }
+
+    /* Garantir que o overlay cubra tudo */
+    .carrinho-overlay.active {
+        height: 100vh;
+        position: fixed;
+    }
+}
+
+/* Correção específica para iOS */
+@supports (-webkit-touch-callout: none) {
+    @media (max-width: 768px) {
+        #carrinho-container {
+            height: -webkit-fill-available;
+        }
+        
+        .carrinho-content {
+            max-height: calc(100vh - 220px);
+        }
+    }
+}
+
+/* Garantir que o botão nunca suma */
+.btn-finalizar {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Melhorar a experiência quando o teclado está aberto */
+.carrinho-content:focus-within {
+    padding-bottom: 30px;
+}
+
+/* Ajuste para quando o campo nome está em foco */
+.nome-input:focus {
+    outline: none;
+    border-color: var(--ciano);
+}
+
+/* Garantir que o scroll funcione bem */
+.carrinho-items {
+    max-height: none;
+}
+
+/* Forçar o botão a ficar visível em todas as situações */
+#carrinho-container:not(.carrinho-hidden) .btn-finalizar {
+    display: flex !important;
+}
+
 }
